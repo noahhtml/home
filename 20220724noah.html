@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>go to milk see</title>
+</head>
+
+<body>
+    <canvas id="milk">
+
+    </canvas>
+    <button onclick="test()">test</button>
+
+    <div id="milk2"> </div>
+    <script>
+        var milk = document.getElementById("milk")
+        var ctx = milk.getContext('2d');
+        var points = [];
+        var point1 = { x: 0, y: 0 }
+        var point2 = { x: 0, y: 0 }
+        var 距離 = document.getElementById("milk2")
+        function test() {
+            距離.innerHTML = "i want tan cups milk"
+
+        }
+      
+        milk.addEventListener("mousedown", onclick);
+
+        milk.addEventListener("mousemove", onMove);
+        function onclick(e) {
+            point1.x = e.clientX;
+            point1.y = e.clientY;
+            var num = 10 * 1;
+            for (
+                let i = 0;
+                i < num;
+                i++
+            ) {
+
+                points.push(
+                    {
+                        x: e.clientX + i
+                        , y: e.clientY + (i * -1)
+                    })
+
+            }
+        }
+
+        function onMove(e) {
+            point2.x = e.clientX;
+            point2.y = e.clientY;
+
+        }
+        function draw() { //重新畫線 
+            if (points.length == 0) {
+                return 0;
+            }
+            ctx.strokeStyle = 'red';//顏色
+            ctx.lineWidth = 2;//寬度
+
+            var p = points[0];
+            ctx.beginPath();
+
+            for (let i = 0; i < points.length; i++) {
+                p = points[i];
+                if (i == 0) ctx.moveTo(p.x, p.y);
+                else ctx.lineTo(p.x, p.y);
+
+            }
+            //  lastPoint = p ;
+            ctx.lineTo(point2.x, point2.y);
+            ctx.stroke();
+        }
+        function Update() {
+            ctx.clearRect(0, 0, milk.width, milk.height);
+            draw(); //重新畫線 
+          //  var d = countAlldist();
+         // 距離.innerHTML = d;
+            requestAnimationFrame(Update);
+        }
+
+        Update();
+    </script>
+</body>
+
+</html>
