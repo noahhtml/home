@@ -12,11 +12,14 @@
     <canvas id="milk">
 
     </canvas>
-    <button onclick="test()">test</button>
+    <button onclick="test()">noah</button>
 
     <div id="milk2"> </div>
     <script>
         var milk = document.getElementById("milk")
+        milk.width = window.innerWidth;
+        milk.height = window.innerHeight;
+      
         var ctx = milk.getContext('2d');
         var points = [];
         var point1 = { x: 0, y: 0 }
